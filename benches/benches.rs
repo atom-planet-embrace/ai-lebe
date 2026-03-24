@@ -2,7 +2,7 @@
 extern crate bencher;
 
 use bencher::Bencher;
-use lebe::prelude::*;
+use ai_lebe::prelude::*;
 use byteorder::{ReadBytesExt, LittleEndian, BigEndian, WriteBytesExt};
 use std::io::{Read, Write, Cursor};
 

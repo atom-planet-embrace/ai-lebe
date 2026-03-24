@@ -1,6 +1,8 @@
-[![Rust Docs](https://docs.rs/lebe/badge.svg)](https://docs.rs/lebe) 
-[![Crate Crate](https://img.shields.io/crates/v/lebe.svg)](https://crates.io/crates/lebe) 
-![Lines of Code](https://tokei.rs/b1/github/johannesvollmer/lebe?category=code)
+This is a fork of the [lebe](https://crates.io/crates/lebe) crate.
+
+[![Rust Docs](https://docs.rs/ai-lebe/badge.svg)](https://docs.rs/ai-lebe)
+[![Crate Crate](https://img.shields.io/crates/v/ai-lebe.svg)](https://crates.io/crates/ai-lebe)
+![Lines of Code](https://tokei.rs/b1/github/atom-planet-embrace/ai-lebe?category=code)
 
 
 # LEBE
@@ -21,7 +23,7 @@ This simplifies reading and writing binary data to files or network streams.
 
 Write values.
 ```rust
-    use lebe::io::WriteEndian;
+    use ai_lebe::io::WriteEndian;
     use std::io::Write;
     
     fn main(){
@@ -35,7 +37,7 @@ Write values.
 
 Read numbers.
 ```rust
-    use lebe::io::ReadEndian;
+    use ai_lebe::io::ReadEndian;
     use std::io::Read;
     
     fn main(){
@@ -46,7 +48,7 @@ Read numbers.
 
 Read slices.
 ```rust
-    use lebe::io::ReadEndian;
+    use ai_lebe::io::ReadEndian;
     use std::io::Read;
     
     fn main(){
@@ -61,7 +63,7 @@ Read slices.
 
 Convert slices in-place.
 ```rust
-    use lebe::Endian;
+    use ai_lebe::Endian;
     
     fn main(){
         let mut numbers: &[i32] = &[ 32, 102, 420, 594 ];

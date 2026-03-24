@@ -1,3 +1,4 @@
+#![no_std]
 #![warn(
     missing_docs, unused,
     trivial_numeric_casts,
@@ -7,7 +8,7 @@
     clippy::all
 )]
 
-#![doc(html_root_url = "https://docs.rs/lebe/0.5.0")]
+#![doc(html_root_url = "https://docs.rs/ai-lebe/0.5.0")]
 
 //! Dead simple endianness conversions.
 //! The following operations are implemented on
@@ -16,7 +17,7 @@
 //!
 //! ### Read Numbers
 //! ```rust
-//! use lebe::prelude::*;
+//! use ai_lebe::prelude::*;
 //! let mut reader: &[u8] = &[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 //!
 //! let number : u64 = reader.read_from_little_endian()?;
@@ -27,7 +28,7 @@
 //! ### Read Slices
 //! ```rust
 //! use std::io::Read;
-//! use lebe::prelude::*;
+//! use ai_lebe::prelude::*;
 //! let mut reader: &[u8] = &[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 //!
 //! let mut numbers: &mut [u64] = &mut [0, 0];
@@ -38,7 +39,7 @@
 //! ### Write Numbers
 //! ```rust
 //! use std::io::Read;
-//! use lebe::prelude::*;
+//! use ai_lebe::prelude::*;
 //! let mut writer: Vec<u8> = Vec::new();
 //!
 //! let number: u64 = 1237691;
@@ -49,7 +50,7 @@
 //! ### Write Slices
 //! ```rust
 //! use std::io::Write;
-//! use lebe::prelude::*;
+//! use ai_lebe::prelude::*;
 //! let mut writer: Vec<u8> = Vec::new();
 //!
 //! let numbers: &[u64] = &[1_u64, 234545_u64];
@@ -211,45 +212,45 @@ call_single_arg_macro_for_each! {
 /// Also contains the unsafe `bytes` module for reinterpreting values as byte slices and vice versa.
 pub mod io {
     use super::Endian;
-    use std::io::{Read, Write, Result};
+    use no_std_io::io::{Read, Write, Result};
 
     /// Reinterpret values as byte slices and byte slices as values unsafely.
     pub mod bytes {
-        use std::io::{Read, Write, Result};
+        use no_std_io::io::{Read, Write, Result};
 
         /// View this slice of values as a slice of bytes.
         #[inline]
         pub unsafe fn slice_as_bytes<T>(value: &[T]) -> &[u8] {
-            std::slice::from_raw_parts(
+            core::slice::from_raw_parts(
                 value.as_ptr() as *const u8,
-                value.len() * std::mem::size_of::<T>()
+                value.len() * core::mem::size_of::<T>()
             )
         }
 
         /// View this slice of values as a mutable slice of bytes.
         #[inline]
         pub unsafe fn slice_as_bytes_mut<T>(value: &mut [T]) -> &mut [u8] {
-            std::slice::from_raw_parts_mut(
+            core::slice::from_raw_parts_mut(
                 value.as_mut_ptr() as *mut u8,
-                value.len() * std::mem::size_of::<T>()
+                value.len() * core::mem::size_of::<T>()
             )
         }
 
         /// View this reference as a slice of bytes.
         #[inline]
         pub unsafe fn value_as_bytes<T: Sized>(value: &T) -> &[u8] {
-            std::slice::from_raw_parts(
+            core::slice::from_raw_parts(
                 value as *const T as *const u8,
-                std::mem::size_of::<T>()
+                core::mem::size_of::<T>()
             )
         }
 
         /// View this reference as a mutable slice of bytes.
         #[inline]
         pub unsafe fn value_as_bytes_mut<T: Sized>(value: &mut T) ->&mut [u8] {
-            std::slice::from_raw_parts_mut(
+            core::slice::from_raw_parts_mut(
                 value as *mut T as *mut u8,
-                std::mem::size_of::<T>()
+                core::mem::size_of::<T>()
             )
         }
 
@@ -282,7 +283,7 @@ pub mod io {
     /// Will encode the values to be either little endian or big endian, as desired.
     ///
     /// This extension trait is implemented for all `Write` types.
-    /// Add `use lebe::io::WriteEndian;` to your code
+    /// Add `use ai_lebe::io::WriteEndian;` to your code
     /// to automatically unlock this functionality for all types that implement `Write`.
     pub trait WriteEndian<T: ?Sized> {
 
@@ -303,7 +304,7 @@ pub mod io {
     /// Will decode the values from either little endian or big endian, as desired.
     ///
     /// This extension trait is implemented for all `Read` types.
-    /// Add `use lebe::io::ReadEndian;` to your code
+    /// Add `use ai_lebe::io::ReadEndian;` to your code
     /// to automatically unlock this functionality for all types that implement `Read`.
     pub trait ReadEndian<T: ?Sized> {
 
@@ -352,7 +353,7 @@ pub mod io {
     /// The default way of reading a value is:
     /// ```rust
     /// # use std::io::Read;
-    /// # use lebe::prelude::*;
+    /// # use ai_lebe::prelude::*;
     /// # let mut reader : &[u8] = &[2, 1];
     ///
     /// let number: u16 = reader.read_from_little_endian()?;
@@ -364,7 +365,7 @@ pub mod io {
     /// This trait enables you to use expressions:
     /// ```rust
     /// # use std::io::Read;
-    /// # use lebe::prelude::*;
+    /// # use ai_lebe::prelude::*;
     /// # let mut reader : &[u8] = &[2, 1];
     ///
     /// println!("{}", u16::read_from_little_endian(&mut reader)?);

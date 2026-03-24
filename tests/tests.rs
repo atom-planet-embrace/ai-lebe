@@ -1,8 +1,6 @@
-extern crate lebe;
+extern crate ai_lebe;
 
-use lebe::prelude::*;
-use std::mem;
-
+use ai_lebe::prelude::*;
 use byteorder::{WriteBytesExt, LittleEndian, BigEndian, ReadBytesExt};
 
 #[test]
@@ -119,9 +117,9 @@ fn into_be_u32() {
 #[test]
 fn cmp_read_be_u16() {
     let read: &[u8] = &[0x33, 0xbb];
-    let a = u16::read_from_big_endian(&mut read.clone()).unwrap();
-    let b: u16 = read.clone().read_from_big_endian().unwrap();
-    let c = read.clone().read_u16::<BigEndian>().unwrap();
+    let a = u16::read_from_big_endian(&mut { read }).unwrap();
+    let b: u16 = { read }.read_from_big_endian().unwrap();
+    let c = { read }.read_u16::<BigEndian>().unwrap();
 
     assert_eq!(a, b);
     assert_eq!(a, c);
@@ -130,9 +128,9 @@ fn cmp_read_be_u16() {
 #[test]
 fn cmp_read_le_u16() {
     let read: &[u8] = &[0x33, 0xbb];
-    let a = u16::read_from_little_endian(&mut read.clone()).unwrap();
-    let b: u16 = read.clone().read_from_little_endian().unwrap();
-    let c = read.clone().read_u16::<LittleEndian>().unwrap();
+    let a = u16::read_from_little_endian(&mut { read }).unwrap();
+    let b: u16 = { read }.read_from_little_endian().unwrap();
+    let c = { read }.read_u16::<LittleEndian>().unwrap();
 
     assert_eq!(a, b);
     assert_eq!(a, c);
@@ -141,9 +139,9 @@ fn cmp_read_le_u16() {
 #[test]
 fn cmp_read_le_f32() {
     let read: &[u8] = &[0x33, 0xBB, 0x44, 0xCC];
-    let a = f32::read_from_little_endian(&mut read.clone()).unwrap();
-    let b: f32 = read.clone().read_from_little_endian().unwrap();
-    let c = read.clone().read_f32::<LittleEndian>().unwrap();
+    let a = f32::read_from_little_endian(&mut { read }).unwrap();
+    let b: f32 = { read }.read_from_little_endian().unwrap();
+    let c = { read }.read_f32::<LittleEndian>().unwrap();
 
     assert_eq!(a, b);
     assert_eq!(a, c);
