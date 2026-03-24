@@ -9,7 +9,7 @@ repository = "https://github.com/atom-planet-embrace/ai-lebe"
 documentation = "https://docs.rs/crate/ai-lebe/"
 readme = "README.md"
 license = "BSD-3-Clause"
-keywords = ["endianness", "binary", "io", "byteorder", "endian", "no_std"]
+keywords = ["endianness", "byteorder", "endian", "no_std"]
 categories = ["encoding", "filesystem", "algorithms"]
 rust-version = "1.78.0"
 
