@@ -4,7 +4,7 @@ version = "0.5.3"
 authors = ["johannesvollmer <contact@johannesvollmer.com>"]
 edition = "2018"
 
-description = "A no_std port of ai-lebe"
+description = "A no_std port of lebe"
 repository = "https://github.com/atom-planet-embrace/ai-lebe"
 documentation = "https://docs.rs/crate/ai-lebe/"
 readme = "README.md"
