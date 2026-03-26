@@ -1,4 +1,4 @@
-This is a fork of the [lebe](https://crates.io/crates/lebe) crate.
+This is a fork of the [lebe](https://crates.io/crates/lebe) crate. The git repository is located at https://github.com/johannesvollmer/lebe.
 
 [![Rust Docs](https://docs.rs/ai-lebe/badge.svg)](https://docs.rs/ai-lebe)
 [![Crate Crate](https://img.shields.io/crates/v/ai-lebe.svg)](https://crates.io/crates/ai-lebe)
